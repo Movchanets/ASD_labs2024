@@ -38,10 +38,10 @@ public class Main {
                 case 3:
                     System.out.println("Третій рівень");
                 {
-                    Scanner scanner = new Scanner(System.in);
+                    ;
 
                     System.out.print("Enter the size of the stack: ");
-                    int stackSize = scanner.nextInt();
+                    int stackSize = scan.nextInt();
 
                     LinkedStack enumStack = new LinkedStack(stackSize);
                     StringQueue femaleQueue = new StringQueue(stackSize);
@@ -57,18 +57,18 @@ public class Main {
                         System.out.println("5. Form Female and Male Queues");
                         System.out.println("6. Exit");
                         System.out.print("Enter your choice: ");
-                        while (!scanner.hasNextInt()) {
+                        while (!scan.hasNextInt()) {
                             System.out.println("Invalid choice. Please enter a valid option.");
-                            scanner.next();
+                            scan.next();
                         }
-                        Choice = scanner.nextInt();
+                        Choice = scan.nextInt();
 
                         switch (Choice) {
                             case 1:
                                 System.out.println("Enter a name to push:");
                                 System.out.println("Available names: " + (Arrays.toString(Names.values())));
-                                scanner.nextLine();
-                                String inputName = scanner.nextLine();
+                                scan.nextLine();
+                                String inputName = scan.nextLine();
                                 try {
                                     Names name = Names.valueOf(inputName.toUpperCase());
                                     enumStack.push(name);
@@ -120,7 +120,7 @@ public class Main {
                         }
                     } while (Choice != 6);
 
-                    scanner.close();
+
                 }
 
                 break;

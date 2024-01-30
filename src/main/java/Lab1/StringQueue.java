@@ -4,35 +4,58 @@ import java.util.Scanner;
 
 public class StringQueue {
     private int maxSize;
-    private int front;
-    private int rear;
+    private int begin;
+    private int end;
+    private int number_of_elements = 0;
     private String[] queueArray;
 
     public StringQueue(int size) {
         maxSize = size;
         queueArray = new String[maxSize];
-        front = 0;
-        rear = -1;
+        begin = -1;
+        end = -1;
     }
-
     public void enqueue(String value) {
-        if (isFull()) {
-            System.out.println("Queue is full. Cannot enqueue " + value);
-        } else {
-            rear++;
-            queueArray[rear] = value;
+
+        if (isFull()) return;
+
+        number_of_elements++;
+
+        if (isEmpty()) {
+
+            begin = 0;
         }
+
+        end = (end + 1) % maxSize;
+
+        if (queueArray[end] == null) {
+
+            queueArray[end] = value;
+        }
+
     }
 
     public String dequeue() {
-        if (isEmpty()) {
-            System.out.println("Queue is empty. Cannot dequeue.");
-            return null;
-        } else {
-            String dequeuedValue = queueArray[front];
-            front++;
-            return dequeuedValue;
+
+        if (this.isEmpty()) return null;
+
+        number_of_elements--;
+
+        String res = queueArray[begin];
+
+        queueArray[begin] = null;
+
+        if (begin == this.end) {
+
+            begin = -1;
+            end = -1;
         }
+        else {
+
+            begin = (begin + 1) % maxSize;
+        }
+
+        return res;
     }
 
     public String peek() {
@@ -40,27 +63,28 @@ public class StringQueue {
             System.out.println("Queue is empty. Cannot peek.");
             return null;
         } else {
-            return queueArray[front];
+            return queueArray[begin];
         }
     }
 
     public boolean isFull() {
-        return rear == maxSize - 1;
+        return ((end + 1) % maxSize) == begin;
     }
 
     public boolean isEmpty() {
-        return front > rear;
+        return (begin == -1) && (end == -1);
     }
 
     public void displayQueue() {
+
         if (isEmpty()) {
             System.out.println("Queue is empty.");
         } else {
-            System.out.print("Queue: ");
-            for (int i = front; i <= rear; i++) {
+
+            for (int i = 0; i < maxSize; i++) {
                 System.out.print(queueArray[i] + " ");
             }
-            System.out.println();
+
         }
     }
 
