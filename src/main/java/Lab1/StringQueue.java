@@ -17,20 +17,20 @@ public class StringQueue {
     }
     public void enqueue(String value) {
 
-        if (isFull()) return;
+        if (isFull()) return; // queue is full
 
-        number_of_elements++;
+        number_of_elements++; // increase the number of elements
 
         if (isEmpty()) {
 
             begin = 0;
         }
 
-        end = (end + 1) % maxSize;
+        end = (end + 1) % maxSize; // circular queue
 
         if (queueArray[end] == null) {
 
-            queueArray[end] = value;
+            queueArray[end] = value; // add the value to the queue
         }
 
     }
@@ -39,20 +39,20 @@ public class StringQueue {
 
         if (this.isEmpty()) return null;
 
-        number_of_elements--;
+        number_of_elements--; // decrease the number of elements
 
         String res = queueArray[begin];
 
-        queueArray[begin] = null;
+        queueArray[begin] = null; // remove the value from the queue
 
-        if (begin == this.end) {
+        if (begin == this.end) { // if there is only one element in the queue
 
             begin = -1;
             end = -1;
         }
         else {
 
-            begin = (begin + 1) % maxSize;
+            begin = (begin + 1) % maxSize; // circular queue
         }
 
         return res;
@@ -92,9 +92,9 @@ public class StringQueue {
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Enter the size of the queue: ");
-        int size = scanner.nextInt();
+        int size = scanner.nextInt(); // get the size of the queue
 
-        StringQueue myQueue = new StringQueue(size);
+        StringQueue myQueue = new StringQueue(size); // create a queue of the given size
 
         int choice;
         do {
@@ -113,7 +113,7 @@ public class StringQueue {
                 case 1:
                     System.out.print("Enter the element to enqueue: ");
                     scanner.nextLine();
-                    String element = scanner.nextLine();
+                    String element = scanner.nextLine(); // get the element to enqueue
                     myQueue.enqueue(element);
                     break;
                 case 2:
@@ -123,7 +123,7 @@ public class StringQueue {
                     }
                     break;
                 case 3:
-                    myQueue.displayQueue();
+                    myQueue.displayQueue(); // display the queue
                     break;
                 case 4:
                     System.out.println("Exiting program.");
@@ -134,7 +134,8 @@ public class StringQueue {
             }
         } while (choice != 4);
 
-        scanner.close();
+
+
     }
 
 }

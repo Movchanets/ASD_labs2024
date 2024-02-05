@@ -131,7 +131,7 @@ public class LinkedStack {
             }
         } while (choice != 5);
 
-        scanner.close();
+
     }
 }
 

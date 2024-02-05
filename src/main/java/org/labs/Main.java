@@ -68,7 +68,7 @@ public class Main {
                                 System.out.println("Enter a name to push:");
                                 System.out.println("Available names: " + (Arrays.toString(Names.values())));
                                 scan.nextLine();
-                                String inputName = scan.nextLine();
+                                String inputName = scan.nextLine(); // Read the name from the user
                                 try {
                                     Names name = Names.valueOf(inputName.toUpperCase());
                                     enumStack.push(name);
@@ -77,16 +77,16 @@ public class Main {
                                 }
                                 break;
                             case 2:
-                                Names poppedName = enumStack.pop();
+                                Names poppedName = enumStack.pop(); // Pop the name from the stack
                                 if (poppedName != null) {
                                     System.out.println("Popped name: " + poppedName);
                                 }
                                 break;
                             case 3:
-                                enumStack.displayStack();
+                                enumStack.displayStack(); // Display the contents of the stack
                                 break;
                             case 4:
-                                Names peekedName = enumStack.peek();
+                                Names peekedName = enumStack.peek(); // Peek the top of the stack
                                 if (peekedName != null) {
                                     System.out.println("Top of the stack: " + peekedName);
                                 }
@@ -96,7 +96,7 @@ public class Main {
                                 femaleQueue = new StringQueue(stackSize);
                                 maleQueue = new StringQueue(stackSize);
 
-                                while (!enumStack.isEmpty()) {
+                                while (!enumStack.isEmpty()) { // Generate female and male queues
                                     Names name = enumStack.pop();
                                     if (name.getGender() == Gender.FEMALE) {
                                         femaleQueue.enqueue(name.toString());
